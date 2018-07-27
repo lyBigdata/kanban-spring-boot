@@ -1,0 +1,49 @@
+<ol class="breadcrumb">
+    <li><a ui-sref="app.welcome">首页</a></li>
+    <li class="active">话题分组列表</li>
+</ol>
+
+<div class="row form-group">
+    <div class="col-sm-12">
+        <a class="btn btn-success" ui-sref="app.meta-group-create">新增</a>
+    </div>
+</div>
+<div class="form-group" ng-show="loading">
+    <div class="col-sm-12">
+        <img src="images/loading.gif" />加载中，请稍后...
+    </div>
+</div>
+<table class="table" ng-show="!loading">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>分组编号</th>
+            <th>分组名称</th>
+            <th>查看</th>
+            <th>编辑</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in items">
+            <td>{{item.id}}</td>
+            <td>{{item.groupId}}</td>
+            <td>{{item.groupName}}</td>
+            <td><a ui-sref="app.meta-group-item({id: item.id})">查看</a></td>
+            <td><a ui-sref="app.meta-group-update({id: item.id})">编辑</a></td>
+        </tr>
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-sm-12">
+        <ul uib-pagination
+            max-size="8"
+            items-per-page="15"
+            total-items="totalCount"
+            ng-model="currentPage"
+            ng-change="pageChanged()"
+            class="pagination"
+            previous-text="上一页"
+            next-text="下一页"
+            boundary-link-numbers="true"></ul>
+    </div>
+</div>
